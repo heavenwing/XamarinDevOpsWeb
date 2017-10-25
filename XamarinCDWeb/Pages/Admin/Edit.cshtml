@@ -30,6 +30,11 @@
                 <span asp-validation-for="MobileApp.IpaVersion" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="MobileApp.IpaId" class="control-label"></label>
+                <input asp-for="MobileApp.IpaId" class="form-control" />
+                <span asp-validation-for="MobileApp.IpaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>

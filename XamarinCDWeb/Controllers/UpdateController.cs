@@ -20,18 +20,27 @@ namespace XamarinCDWeb.Controllers
             _db = db;
         }
 
-        public async Task GetAsync(Guid appId, MobilePlatform platform, string version)
+        public class InputDto
         {
-            var item = await _db.MobileApps.FindAsync(appId);
-            if (item!=null)
+            public Guid AppId { get; set; }
+
+            public MobilePlatform Platform { get; set; }
+
+            public string Version { get; set; }
+        }
+
+        public async Task PostAsync(InputDto dto)
+        {
+            var item = await _db.MobileApps.FindAsync(dto.AppId);
+            if (item != null)
             {
-                switch (platform)
+                switch (dto.Platform)
                 {
                     case MobilePlatform.Android:
-                        item.ApkVersion = version;
+                        item.ApkVersion = dto.Version;
                         break;
                     case MobilePlatform.iOS:
-                        item.IpaVersion = version;
+                        item.IpaVersion = dto.Version;
                         break;
                 }
                 await _db.SaveChangesAsync();

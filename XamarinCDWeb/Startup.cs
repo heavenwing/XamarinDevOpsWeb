@@ -11,6 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using XamarinCDWeb.Data;
 using XamarinCDWeb.Services;
+using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace XamarinCDWeb
 {
@@ -59,7 +62,21 @@ namespace XamarinCDWeb
                 app.UseExceptionHandler("/Error");
             }
 
+
             app.UseStaticFiles();
+
+            // Set up custom content types -associating file extension to MIME type
+            var provider = new FileExtensionContentTypeProvider();
+            // Add new mappings
+            provider.Mappings[".apk"] = "application/vnd.android.package-archive";
+            provider.Mappings[".ipa"] = "application/octet-stream";
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "AppPackages")),
+                RequestPath = new PathString("/AppPackages"),
+                ContentTypeProvider = provider
+            });
 
             app.UseAuthentication();
 

@@ -11,9 +11,10 @@ using XamarinCDWeb.Data;
 namespace XamarinCDWeb.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171025144400_AddedField_MobileApp_IpaId")]
+    partial class AddedField_MobileApp_IpaId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

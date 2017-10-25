@@ -14,5 +14,7 @@ namespace XamarinCDWeb.Data
         public string ApkVersion { get; set; }
 
         public string IpaVersion { get; set; }
+
+        public string IpaId { get; set; }
     }
 }

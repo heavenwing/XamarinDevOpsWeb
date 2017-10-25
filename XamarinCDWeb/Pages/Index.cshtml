@@ -4,29 +4,24 @@
     ViewData["Title"] = "Home page";
     var ids = Model.MobileApps.Select(o => o.Id.ToString("N")).ToArray();
 }
-
-@foreach (var item in Model.MobileApps)
+@for (int i = 0; i < Model.MobileApps.Count; i++)
 {
+    var item = Model.MobileApps[i];
+    var androidDownloadUrl = Model.AndroidDownloadUrls[i];
+    var iosDownloadurl = Model.IosDownloadUrls[i];
+
     <div class="row">
         <h1>@item.Name</h1>
         <div class="col-md-6">
             <h2>Android <span class="badge">@item.ApkVersion</span></h2>
             <input id="qrcode_android_url_@item.Id.ToString("N")" type="hidden"
-                   value="@Url.Action("Index", "DownloadFile", new
-                                          {
-                                              appId = item.Id,
-                                              platform = XamarinCDWeb.Common.MobilePlatform.Android
-                                          })" />
+                   value="@androidDownloadUrl" />
             <div class="img-thumbnail" id="qrcode_android_@item.Id.ToString("N")" style="width:170px; height:170px;"></div>
         </div>
         <div class="col-md-6">
             <h2>iOS <span class="badge">@item.IpaVersion</span></h2>
             <input id="qrcode_ios_url_@item.Id.ToString("N")" type="hidden"
-                   value="@Url.Action("Index", "DownloadFile", new
-                                          {
-                                              appId = item.Id,
-                                              platform = XamarinCDWeb.Common.MobilePlatform.iOS
-                                          })" />
+                   value="@iosDownloadurl" />
             <div class="img-thumbnail" id="qrcode_ios_@item.Id.ToString("N")" style="width:170px; height:170px;"></div>
         </div>
     </div>
