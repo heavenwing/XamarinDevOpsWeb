@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using XamarinCDWeb.Data;
 using Microsoft.EntityFrameworkCore;
+using XamarinCDWeb.Data;
 
-namespace XamarinCDWeb.Pages
+namespace XamarinCDWeb.Pages.Admin
 {
     public class IndexModel : PageModel
     {
@@ -18,11 +18,11 @@ namespace XamarinCDWeb.Pages
             _db = db;
         }
 
-        public List<MobileApp> MobileApps { get;private set; }
+        public IList<MobileApp> MobileApp { get;set; }
 
         public async Task OnGetAsync()
         {
-            MobileApps = await _db.MobileApps.ToListAsync();
+            MobileApp = await _db.MobileApps.ToListAsync();
         }
     }
 }

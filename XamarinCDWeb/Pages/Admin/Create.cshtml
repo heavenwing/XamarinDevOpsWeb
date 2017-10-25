@@ -1,0 +1,44 @@
+﻿@page
+@model XamarinCDWeb.Pages.Admin.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>MobileApp</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MobileApp.Name" class="control-label"></label>
+                <input asp-for="MobileApp.Name" class="form-control" />
+                <span asp-validation-for="MobileApp.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MobileApp.ApkVersion" class="control-label"></label>
+                <input asp-for="MobileApp.ApkVersion" class="form-control" />
+                <span asp-validation-for="MobileApp.ApkVersion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MobileApp.IpaVersion" class="control-label"></label>
+                <input asp-for="MobileApp.IpaVersion" class="form-control" />
+                <span asp-validation-for="MobileApp.IpaVersion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
