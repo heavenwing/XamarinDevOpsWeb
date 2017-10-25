@@ -4,6 +4,12 @@
     <UserSecretsId>aspnet-XamarinCDWeb-AF495CE6-3188-4CAF-A062-00F8518569FE</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="AppPackages\**" />
+    <Content Remove="AppPackages\**" />
+    <EmbeddedResource Remove="AppPackages\**" />
+    <None Remove="AppPackages\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.0" />
