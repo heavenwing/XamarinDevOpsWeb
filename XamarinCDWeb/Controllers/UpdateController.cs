@@ -9,6 +9,15 @@ using XamarinCDWeb.Data;
 
 namespace XamarinCDWeb.Controllers
 {
+    public class InputDto
+    {
+        public Guid AppId { get; set; }
+
+        public MobilePlatform Platform { get; set; }
+
+        public string Version { get; set; }
+    }
+
     [Produces("application/json")]
     [Route("api/Update")]
     public class UpdateController : Controller
@@ -20,17 +29,9 @@ namespace XamarinCDWeb.Controllers
             _db = db;
         }
 
-        public class InputDto
+        public async Task<IActionResult> PostAsync([FromBody] InputDto dto)
         {
-            public Guid AppId { get; set; }
-
-            public MobilePlatform Platform { get; set; }
-
-            public string Version { get; set; }
-        }
-
-        public async Task PostAsync(InputDto dto)
-        {
+            if (dto == null) return BadRequest();
             var item = await _db.MobileApps.FindAsync(dto.AppId);
             if (item != null)
             {
@@ -44,7 +45,10 @@ namespace XamarinCDWeb.Controllers
                         break;
                 }
                 await _db.SaveChangesAsync();
+
+                return Ok(item);
             }
+            return NotFound();
         }
     }
 }
