@@ -6,19 +6,13 @@
 <h2>Download</h2>
 <div class="row">
     <div>
-        <label>Artifact Build Number:</label>
-        @if (Model.Platform == Common.MobilePlatform.Android)
-        {
-            <input class="form-control" type="text" value="@Model.App.ApkVersion" />
-        }
-        else
-        {
-            <input class="form-control" type="text" value="@Model.App.IpaVersion" />
-        }
+        <label>Name: @Model.App.Name</label>
+    </div>
+    <div>
+        <label>Artifact Build Number: @(Model.Platform == Common.MobilePlatform.Android? Model.App.ApkVersion:Model.App.IpaVersion)</label>
     </div>
     <br />
     <div>
-
         <a class="btn btn-primary" href="@Model.DownloadUrl">
             Install Application
         </a>
