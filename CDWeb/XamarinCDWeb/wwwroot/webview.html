@@ -8,5 +8,14 @@
     <button onclick="mobilePlatform_TakePhoto()">TakePhoto</button>
     <button onclick="mobilePlatform_TakeVideo()">TakeVideo</button>
     <button onclick="mobilePlatform_GetPosition()">GetPosition</button>
+    <input type="text" multiple id="txtResult" />
+
+    <script type="text/javascript">
+        function mobilePlatform_TakePhotoCallback(args) {
+            var txtResult = document.getElementById("txtResult");
+            txtResult.value = args;
+        }
+    </script>
+
 </body>
 </html>

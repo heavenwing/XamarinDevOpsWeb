@@ -8,6 +8,7 @@ using XamarinCDWeb.Data;
 using XamarinCDWeb.Common;
 using Microsoft.AspNetCore.Http.Extensions;
 using XamarinCDWeb.Extensions;
+using System.Net;
 
 namespace XamarinCDWeb.Pages
 {
@@ -35,7 +36,7 @@ namespace XamarinCDWeb.Pages
             else
             {
                 var plistUrl = Request.GetUriAuthority() + Url.Page("Plist", new { appId = appId });
-                DownloadUrl = $"itms-services://?action=download-manifest&url={plistUrl}";
+                DownloadUrl = $"itms-services://?action=download-manifest&url={WebUtility.UrlEncode(plistUrl)}";
             }
         }
     }
